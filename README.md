@@ -13,6 +13,7 @@ How to set it up?
 * Copy the folder ```ubuntu-notifyosd-wp-plugin``` to your plugins folder of your WordPress install ```(wp-admin/plugins/)```.
 * Activate the plugin.
 * And then copy the other folder ```ubuntu-notify-osd-script``` somewhere where you will like to keep it (In a scripts folder under your home directory perhaps?).
+* open the script ```wp-version-check.sh``` for editing, change the URL of your WordPress install WPURL
 * Setup the cronjob for the script by ```crontab -e```
 * At the end of the file, add ```*/10 * * * * /path/to/wp-version-check.sh```
 * Press ```Ctrl``` + ```X``` to exit. Press ```y``` to save the changes you made.
