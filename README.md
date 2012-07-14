@@ -1,5 +1,5 @@
-Ubuntu NotifyOSD WordPress Notifier
-===================================
+Ubuntu NotifyOSD / MAC Growl WordPress Notifier
+===============================================
 
 It will check with the version of your WordPress install & compare it with the latest version and will notify you to upgrade your install.
 
