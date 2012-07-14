@@ -5,6 +5,9 @@
 # Don't add a trailing slash at the end of the URL
 WPURL='http://blog.ashfame.com'
 
+# OS Choice: UBUNTU, MAC
+OSTYPE='UBUNTU'
+
 WPVERSION="`wget -qO- $WPURL/wp-admin/admin-ajax.php?action=wp_version`"
 
 # Current DIR http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
@@ -19,30 +22,17 @@ declare -a z
 z=($RESULT)
 
 if [ "${z[0]}" = 'upgrade'  ]; then
+
 	NEWVER=${z[3]}
-	notify-send -t 2000 -i $DIR/wp.png "WordPress $NEWVER released" "Update your installs now"
+
+	if [[ $OSTYPE =~ MAC ]]; then
+		growlnotify --image wp.png WordPress Notifyer -m "WordPress $NEWVER released" "Update your installs now"
+	fi
+
+	if [[ $OSTYPE =~ UBUNTU ]]; then
+		notify-send -t 2000 -i $DIR/wp.png "WordPress $NEWVER released" "Update your installs now"
+	fi
+
 fi
 
 exit
-
-#
-# Following code is only kept for reference (I am not a shell scripting nerd!)
-#
-
-# Working code (without version number) using a tmp file in user folder
-<<COMMENT
-wget -q -O /home/ashfame/wp-version-check.txt $URL
-grep -i "upgrade" /home/ashfame/wp-version-check.txt
-if [ $? -eq 0 ] ; then
-DISPLAY=:0 notify-send -t 2000 -i /home/ashfame/Dropbox/Ubuntu/icons/wp.png "WordPress Version outdated!" "Please update!"
-fi
-rm /home/ashfame/wp-version-check.txt
-COMMENT
-
-# Working code using pipeline (but not sufficient to extract the version number from wget)
-<<COMMENT1
-wget -qO- $URL | grep "upgrade"
-if [ $? -eq 0 ] ; then
-DISPLAY=:0 notify-send -t 2000 -i /home/ashfame/Dropbox/Ubuntu/icons/wp.png "WordPress Version outdated!" "Please update!"
-fi
-COMMENT1
