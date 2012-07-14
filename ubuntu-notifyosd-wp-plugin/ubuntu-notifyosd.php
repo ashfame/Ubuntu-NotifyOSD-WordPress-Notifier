@@ -4,7 +4,7 @@ Plugin Name: Ubuntu NotifyOSD WP Listener
 Plugin URI: https://github.com/ashfame/Ubuntu-NotifyOSD-WordPress-Notifier
 Description: Listener for the WordPress install
 Author: Ashfame
-Version: 0.1
+Version: 0.1.1
 Author URI: http://blog.ashfame.com
 */
 
@@ -15,6 +15,7 @@ Author URI: http://blog.ashfame.com
  *
  */
 
+add_action( 'wp_ajax_wp_version', 'unosd_wp_version' );
 add_action( 'wp_ajax_nopriv_wp_version', 'unosd_wp_version' );
 
 function unosd_wp_version() {
@@ -29,6 +30,7 @@ function unosd_wp_version() {
  * URL: wp-admin/admin-ajax.php?action=pending_comments_count
  */
 
+add_action( 'wp_ajax_pending_comments_count', 'unosd_pending_comments_count' );
 add_action( 'wp_ajax_nopriv_pending_comments_count', 'unosd_pending_comments_count' );
 
 function unosd_pending_comments_count() {
@@ -38,4 +40,3 @@ function unosd_pending_comments_count() {
 	die();
 }
 
-// Will add tons of stuff once I have some time & I figure out how to run a listener. Eventually, I would like to make it work in realtime.
